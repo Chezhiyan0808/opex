@@ -10,7 +10,7 @@ let routes = require('./config/routes')(server);
 
 
 const init = async () => {
-
+  await server.register(require('inert'));
   await server.start();
   server.route(routes);
   console.log('server running at: ' + server.info.uri);

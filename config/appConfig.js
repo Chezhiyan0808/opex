@@ -14,10 +14,14 @@ let doc = {
     },
     defaultStorage: "FS",
     database: {
-      couchbase: {
+      postgres: {
+        user: 'postgres',
+        database: 'postgres',
+        password: 'admin',
         host: 'localhost',
-        port: 8901,
-        bucket: 'user'
+        port: 5432,
+        max: 10, // max number of connection can be open to database
+        idleTimeoutMillis: 30000, // how long a client is allowed to remain idle before being closed
       }
     },
     baseServerUrl: "http://localhost:3000",
@@ -27,6 +31,6 @@ let doc = {
 store.load(doc);
 
 module.exports = function (criteria) {
-
-  return store.get('/', {"env": "default"});
+ let storeData = store.get('/', {"env": "default"});
+  return storeData
 };
