@@ -29,7 +29,7 @@ data.generateChart = async(request, h) => {
   let query = JSON.parse(JSON.stringify(strings.Query.GETDATA)).replace("$tablename$", "circle_config");
 
  let config = await pgModel.excuteQuery(query, null)
-  if(config.length < 1){
+  if(!config || config.length < 1){
    return {statusCode: 207, message: "Please upload the circle config file before proceeding further"};
   }
   config = config[0];

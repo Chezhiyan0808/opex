@@ -20,7 +20,7 @@ pgModel.createTable = async(queryString, tableName) => {
 pgModel.excuteQuery = async(queryString, params) => {
   let result = await postgresClient.query(queryString, params)
     .catch((error) => {
-      return error.toString()
+      return {rows: []}
     });
   return result.rows
 };
